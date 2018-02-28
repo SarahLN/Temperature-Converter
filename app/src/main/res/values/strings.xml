@@ -8,4 +8,5 @@
     <string name="noti_channel_celsius">Celsius Channel</string>
     <string name="fahrenheit_body">A temperature was converted to Fahrenheit</string>
     <string name="celsius_body">A temperature was converted to Celsius</string>
+    <string name="universal_title">Temperature Converted!</string>
 </resources>

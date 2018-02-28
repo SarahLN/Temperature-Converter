@@ -2,7 +2,9 @@ package com.vogella.android.temperatureconverter;
 
 import android.app.Activity;
 import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -42,10 +44,12 @@ public class MainActivity extends Activity {
                     text.setText(String.valueOf(ConverterUtil.convertFahrenheitToCelsius(inputValue)));
                     celsiusButton.setChecked(false);
                     fahrenheitButton.setChecked(true);
+                    sendNotification(NOTI_SECONDARY1, getString(R.string.universal_title));
                 } else {
                     text.setText(String.valueOf(ConverterUtil.convertCelsiusToFahrenheit(inputValue)));
                     fahrenheitButton.setChecked(false);
                     celsiusButton.setChecked(true);
+                    this.sendNotification(NOTI_PRIMARY1, getString(R.string.universal_title));
                 }
                 break;
         }
@@ -64,5 +68,26 @@ public class MainActivity extends Activity {
         if (nb != null) {
             noti.notify(id, nb);
         }
+    }
+
+    /**
+     * Send Intent to load system Notification Settings for this app.
+     */
+    public void goToNotificationSettings() {
+        Intent i = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+        i.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+        startActivity(i);
+    }
+
+    /**
+     * Send intent to load system Notification Settings UI for a particular channel.
+     *
+     * @param channel Name of channel to configure
+     */
+    public void goToNotificationSettings(String channel) {
+        Intent i = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
+        i.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+        i.putExtra(Settings.EXTRA_CHANNEL_ID, channel);
+        startActivity(i);
     }
 }
