@@ -1,6 +1,9 @@
 package com.vogella.android.temperatureconverter;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -21,6 +24,7 @@ public class MainActivity extends Activity {
     // this method is called at button click because we assigned the name to the
     // "OnClick" property of the button
     public void onClick(View view) {
+
         switch(view.getId()) {
             case R.id.button1:
                 RadioButton celsiusButton = (RadioButton) findViewById(R.id.radio0);
