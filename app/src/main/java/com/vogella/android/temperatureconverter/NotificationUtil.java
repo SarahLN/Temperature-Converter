@@ -3,6 +3,7 @@ package com.vogella.android.temperatureconverter;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Color;
 
@@ -26,12 +27,12 @@ public class NotificationUtil extends ContextWrapper {
         NotificationChannel chan1 = new NotificationChannel(PRIMARY_CHANNEL, getString(R.string.noti_channel_default), NotificationManager.IMPORTANCE_DEFAULT);
         chan1.setLightColor(Color.BLUE);
         chan1.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-        getManager().createNotificationChannel(chan1);
+        getMangaer().createNotificationChannel(chan1);
 
         NotificationChannel chan2 = new NotificationChannel(SECONDARY_CHANNEL, getString(R.string.noti_channel_second), NotificationManager.IMPORTANCE_HIGH);
         chan2.setLightColor(Color.GREEN);
         chan2.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-        getManager().createNotificationChannel(chan2);
+        getMangaer().createNotificationChannel(chan2);
     }
 
     /**
@@ -59,6 +60,10 @@ public class NotificationUtil extends ContextWrapper {
         return new Notification.Builder(getApplicationContext(), SECONDARY_CHANNEL).setContentTitle(title).setContentText(body).setSmallIcon(getSmallIcon()).setAutoCancel(true);
     }
 
+    public void notify(int id, Notification.Builder notification) {
+        getMangaer().notify(id, notification.build());
+    }
+
     /**
      * Get the small icon for this app
      *
@@ -66,6 +71,13 @@ public class NotificationUtil extends ContextWrapper {
      */
     private int getSmallIcon() {
         return android.R.drawable.stat_notify_chat;
+    }
+
+    private NotificationManager getMangaer() {
+        if (self.manager == null) {
+            self.manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        }
+        return self.manager;
     }
 }
 
