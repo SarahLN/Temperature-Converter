@@ -3,6 +3,9 @@
     <string name="celsius">to Celsius</string>
     <string name="fahrenheit">to Fahrenheit</string>
     <string name="calc">Calculate</string>
-    <string name="noti_channel_default">Primary Channel</string>
-    <string name="noti_channel_second">Secondary Channel</string>
+
+    <string name="noti_channel_fahrenheit">Fahrenheit Channel</string>
+    <string name="noti_channel_celsius">Celsius Channel</string>
+    <string name="fahrenheit_body">A temperature was converted to Fahrenheit</string>
+    <string name="celsius_body">A temperature was converted to Celsius</string>
 </resources>

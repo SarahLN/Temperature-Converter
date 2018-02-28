@@ -12,9 +12,9 @@ import android.graphics.Color;
  */
 
 public class NotificationUtil extends ContextWrapper {
-    private NotificationManager mangaer;
-    public static final String PRIMARY_CHANNEL = "default";
-    public static final String SECONDARY_CHANNEL = "second";
+    private NotificationManager manager;
+    public static final String PRIMARY_CHANNEL = "fahrenheit";
+    public static final String SECONDARY_CHANNEL = "celsius";
 
     /**
      * Registers notification channels, which can be used later by individual notifications.
@@ -24,12 +24,12 @@ public class NotificationUtil extends ContextWrapper {
     public NotificationUtil(Context ctx) {
         super(ctx);
 
-        NotificationChannel chan1 = new NotificationChannel(PRIMARY_CHANNEL, getString(R.string.noti_channel_default), NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel chan1 = new NotificationChannel(PRIMARY_CHANNEL, getString(R.string.noti_channel_fahrenheit), NotificationManager.IMPORTANCE_DEFAULT);
         chan1.setLightColor(Color.BLUE);
         chan1.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
         getMangaer().createNotificationChannel(chan1);
 
-        NotificationChannel chan2 = new NotificationChannel(SECONDARY_CHANNEL, getString(R.string.noti_channel_second), NotificationManager.IMPORTANCE_HIGH);
+        NotificationChannel chan2 = new NotificationChannel(SECONDARY_CHANNEL, getString(R.string.noti_channel_celsius), NotificationManager.IMPORTANCE_HIGH);
         chan2.setLightColor(Color.GREEN);
         chan2.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         getMangaer().createNotificationChannel(chan2);
@@ -74,10 +74,10 @@ public class NotificationUtil extends ContextWrapper {
     }
 
     private NotificationManager getMangaer() {
-        if (self.manager == null) {
-            self.manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (this.manager == null) {
+            this.manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         }
-        return self.manager;
+        return this.manager;
     }
 }
 
